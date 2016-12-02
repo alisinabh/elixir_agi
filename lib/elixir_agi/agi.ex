@@ -189,7 +189,7 @@ defmodule ElixirAgi.Agi do
   end
 
   @doc """
-  See: TODO: get from wiki
+  See: https://wiki.asterisk.org/wiki/display/AST/AGICommand_control+stream+file
   """
   @spec control_stream_file(t, String.t, String.t, Integer.t, String.t, String.t, String.t) :: Result.t
   def control_stream_file(agi, file, escape_digits \\ "", offset \\ 0, forward_digits \\ "", rewind_digits \\ "", pause_digits \\ "") do
@@ -202,6 +202,14 @@ defmodule ElixirAgi.Agi do
   @spec exec(t, String.t, [String.t]) :: Result.t
   def exec(agi, application, args \\ []) do
     run agi, "EXEC", [application|args]
+  end
+
+  @doc """
+  See: https://wiki.asterisk.org/wiki/display/AST/AGICommand_get+data
+  """
+  @spec get_data(t, String.t, Integer.t, Integer.t) :: Result.t
+  def get_data(agi, file, timeout \\ 0, max_digits \\ 0) do
+    run agi, "GET DATA", [file, timeout, max_digits]
   end
 
   @spec run(t, String.t, [String.t]) :: Result.t
