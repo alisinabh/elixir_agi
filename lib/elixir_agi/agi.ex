@@ -236,9 +236,9 @@ defmodule ElixirAgi.Agi do
    ) do
     args = [file, format, escape_digits, timeout, offset, beep]
     cond do
-      silence == 0 -> args = [args | "s=" <> silence]
+      silence > 0 -> run agi, "RECORD FILE", args
+      true -> run agi, "RECORD FILE", [args | "s=" <> silence]
     end
-    run agi, "RECORD FILE", args
   end
 
   @spec run(t, String.t, [String.t]) :: Result.t
