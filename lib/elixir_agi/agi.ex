@@ -215,9 +215,30 @@ defmodule ElixirAgi.Agi do
   @doc """
   See: https://wiki.asterisk.org/wiki/display/AST/AGICommand_get+option
   """
-  @spec get_option(t, String.t, Integer.t, Integer.t) :: Result.t
+  @spec get_option(t, String.t, String.t, Integer.t) :: Result.t
   def get_option(agi, file, escape_digits \\ "", timeout \\ 0) do
     run agi, "GET OPTION", [file, escape_digits, timeout]
+  end
+
+  @doc """
+  See: https://wiki.asterisk.org/wiki/display/AST/AGICommand_record+file
+  """
+  @spec record_file(t, String.t, String.t, String.t, Integer.t, Integer.t, boolean, Integer.t) :: Result.t
+  def record_file(
+   agi,
+   file,
+   format \\ "wav",
+   escape_digits \\ "",
+   timeout \\ 0,
+   offset \\ 0,
+   beep = false,
+   silence \\ 0
+   ) do
+    args = [file, format, escape_digits, timeout, offset, beep]
+    cond do
+      silence == 0 -> args = [args | "s=" <> silence]
+    end
+    run agi, "RECORD FILE", args
   end
 
   @spec run(t, String.t, [String.t]) :: Result.t
