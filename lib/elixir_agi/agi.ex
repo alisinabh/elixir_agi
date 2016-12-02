@@ -241,6 +241,15 @@ defmodule ElixirAgi.Agi do
     end
   end
 
+  @doc """
+  Sending commands that are not yet implemeted in elixir_agi is pretty easy
+  you can just use this function with second arg as AST Command name like "STREAM" and third arg should be a list of options for command
+  """
+  @spec custom_cmd(t, String.t, []) :: Result.t
+  def custom_cmd(t, cmd_name, opts) do
+    run agi, cmd_name, opts
+  end
+
   @spec run(t, String.t, [String.t]) :: Result.t
   def run(agi, cmd, args) do
     args = for a <- args, do: ["\"", to_string(a), "\" "]
