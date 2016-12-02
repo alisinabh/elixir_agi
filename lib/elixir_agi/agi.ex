@@ -212,6 +212,14 @@ defmodule ElixirAgi.Agi do
     run agi, "GET DATA", [file, timeout, max_digits]
   end
 
+  @doc """
+  See: https://wiki.asterisk.org/wiki/display/AST/AGICommand_get+option
+  """
+  @spec get_option(t, String.t, Integer.t, Integer.t) :: Result.t
+  def get_option(agi, file, escape_digits \\ "", timeout \\ 0) do
+    run agi, "GET OPTION", [file, escape_digits, timeout]
+  end
+
   @spec run(t, String.t, [String.t]) :: Result.t
   def run(agi, cmd, args) do
     args = for a <- args, do: ["\"", to_string(a), "\" "]
