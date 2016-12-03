@@ -242,6 +242,14 @@ defmodule ElixirAgi.Agi do
   end
 
   @doc """
+  See: https://wiki.asterisk.org/wiki/display/AST/AGICommand_wait+for+digit
+  """
+  @spec wait_for_digit(t, Integer.t) :: Result.t
+  def wait_for_digit(t, timeout \\ 0) do
+    run agi, "WAIT FOR DIGIT", [timeout]
+  end
+
+  @doc """
   Sending commands that are not yet implemeted in elixir_agi is pretty easy
   you can just use this function with second arg as AST Command name like "STREAM" and third arg should be a list of options for command
   """
