@@ -250,6 +250,17 @@ defmodule ElixirAgi.Agi do
   end
 
   @doc """
+  See: https://wiki.asterisk.org/wiki/display/AST/AGICommand_channel+status
+  """
+  @spec channel_status(t, String.t) :: Result.t
+  def channel_status(t, channel) do
+    run agi, "CHANNEL STATUS", [channel]
+  end
+
+  #TODO: Implement say_* AST commands
+  #TODO: Implement speeck AST commands
+
+  @doc """
   Sending commands that are not yet implemeted in elixir_agi is pretty easy
   you can just use this function with second arg as AST Command name like "STREAM" and third arg should be a list of options for command
   """
