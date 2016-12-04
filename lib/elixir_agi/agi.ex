@@ -245,7 +245,7 @@ defmodule ElixirAgi.Agi do
   See: https://wiki.asterisk.org/wiki/display/AST/AGICommand_wait+for+digit
   """
   @spec wait_for_digit(t, Integer.t) :: Result.t
-  def wait_for_digit(t, timeout \\ 0) do
+  def wait_for_digit(agi, timeout \\ 0) do
     run agi, "WAIT FOR DIGIT", [timeout]
   end
 
@@ -253,7 +253,7 @@ defmodule ElixirAgi.Agi do
   See: https://wiki.asterisk.org/wiki/display/AST/AGICommand_channel+status
   """
   @spec channel_status(t, String.t) :: Result.t
-  def channel_status(t, channel) do
+  def channel_status(agi, channel) do
     run agi, "CHANNEL STATUS", [channel]
   end
 
@@ -265,7 +265,7 @@ defmodule ElixirAgi.Agi do
   you can just use this function with second arg as AST Command name like "STREAM" and third arg should be a list of options for command
   """
   @spec custom_cmd(t, String.t, []) :: Result.t
-  def custom_cmd(t, cmd_name, opts) do
+  def custom_cmd(agi, cmd_name, opts) do
     run agi, cmd_name, opts
   end
 
