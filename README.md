@@ -1,4 +1,5 @@
 # ElixirAgi
+[![Build Status](https://travis-ci.org/alisinabh/elixir_agi.svg?branch=master)](https://travis-ci.org/alisinabh/elixir_agi)
 
 An [Asterisk](http://www.asterisk.org/) client for the [AGI](https://wiki.asterisk.org/wiki/display/AST/AGI+Commands)
 protocol written in [Elixir](http://elixir-lang.org/). For a quick introduction to AGI you can read [this](http://marcelog.github.io/articles/php_asterisk_agi_protocol_tutorial.html).
