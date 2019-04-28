@@ -392,10 +392,19 @@ defmodule ElixirAgi.Agi do
     - args: List of asterisk command parameters in order of asterisk command docs
   """
   @spec run(t, String.t(), [String.t()]) :: Result.t()
-  def run(agi, cmd, args) do
+  def run(agi, cmd, args, async \\ false) do
     args = for a <- args, do: ["\"", to_string(a), "\" "]
     cmd = ["\"", cmd, "\" " | args]
     :ok = write(agi, cmd)
+
+    if async do
+      :async
+    else
+      Result.new(read(agi))
+    end
+  end
+
+  def await(agi) do
     Result.new(read(agi))
   end
 
